@@ -7,7 +7,7 @@
   "start": "node server.js",
   "dev": "node server.js",
   "build": "vite build",
-  "test-ci": "node -e \"require('./server.js'); console.log('✅ API compiled and started successfully')\""
+  "test-ci": "node -e \"import('./server.js').then(() => console.log('✅ API compiled and started successfully'))\""
 },
 "dependencies": {
 "cors": "^2.8.5",

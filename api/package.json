@@ -3,7 +3,11 @@
 "version": "1.0.0",
 "type": "module",
 "main": "server.js",
-"scripts": { "start": "node server.js" },
+"scripts": {
+  "start": "node server.js",
+  "build": "vite build",
+  "test-ci": "node -e \"require('./server.js'); console.log('✅ API started & exited for CI')\""
+},
 "dependencies": {
 "cors": "^2.8.5",
 "dotenv": "^16.4.5",

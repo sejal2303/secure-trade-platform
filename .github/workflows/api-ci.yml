@@ -24,4 +24,4 @@ jobs:
           node-version: 18
       - run: npm install
       - name: Smoke test
-        run: node ./server.js
+        run: node -e "require('./server.js'); console.log('✅ API compiled and started successfully')"

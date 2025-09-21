@@ -1,0 +1,33 @@
+name: Web CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Run tests
+        run: npm test --if-present
+
+      - name: Build project
+        env:
+          VITE_API_URL: http://localhost:8080   # fallback API during CI
+        run: npm run build
+
+      - name: Upload production-ready build (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: web/dist

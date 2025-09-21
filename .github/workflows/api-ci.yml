@@ -1,5 +1,6 @@
 name: API CI
 on: [push, pull_request]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +17,10 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U postgres" --health-interval=5s --health-timeout=5s --health-retries=5
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,4 +28,4 @@ jobs:
           node-version: 18
       - run: npm install
       - name: Smoke test
-        run: node -e "require('./server.js'); console.log('✅ API compiled and started successfully')"
+        run: npm run test-ci

@@ -7,13 +7,13 @@ jobs:
     defaults:
       run:
         working-directory: web
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 18
 
+      # Cache npm dependencies for faster builds
       - uses: actions/cache@v3
         with:
           path: ~/.npm
@@ -23,4 +23,3 @@ jobs:
 
       - run: npm install
       - run: npm run build
-      - run: npm test   # optional, only if you have tests

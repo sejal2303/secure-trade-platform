@@ -5,8 +5,9 @@
 "main": "server.js",
 "scripts": {
   "start": "node server.js",
+  "dev": "node server.js",
   "build": "vite build",
-  "test-ci": "node -e \"require('./server.js'); console.log('✅ API started & exited for CI')\""
+  "test-ci": "node -e \"require('./server.js'); console.log('✅ API compiled and started successfully')\""
 },
 "dependencies": {
 "cors": "^2.8.5",

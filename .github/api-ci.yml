@@ -1,0 +1,29 @@
+name: API CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: ./api
+        run: npm ci
+
+      - name: Lint and Test
+        working-directory: ./api
+        run: |
+          npm run lint --if-present
+          npm test --if-present
